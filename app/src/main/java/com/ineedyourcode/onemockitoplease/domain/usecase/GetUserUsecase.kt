@@ -3,7 +3,7 @@ package com.ineedyourcode.onemockitoplease.domain.usecase
 import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
 
 interface GetUserUsecase {
-    fun getUser(callback: GetUserCallback) : UserProfile
+    fun getUser(userName: String, callback: GetUserCallback)
 }
 
 interface GetUserCallback {
