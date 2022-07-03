@@ -11,10 +11,11 @@ import coil.load
 import com.google.android.material.snackbar.Snackbar
 import com.ineedyourcode.onemockitoplease.R
 import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
+import org.koin.android.ext.android.inject
 
 class UserDetailsFragment : Fragment(R.layout.fragment_user_details), ViewContract {
 
-    private lateinit var presenter: PresenterContract
+    private val presenter: PresenterContract by inject()
     private lateinit var progressBar: ProgressBar
     private lateinit var userName: TextView
     private lateinit var userLogin: TextView
@@ -27,6 +28,7 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details), ViewContra
         userName = view.findViewById(R.id.user_name_text_view)
         userLogin = view.findViewById(R.id.user_login_text_view)
         userAvatar = view.findViewById(R.id.user_avatar_image_view)
+        presenter.getUserProfile("jakewharton")
     }
 
     override fun showResult(userProfile: UserProfile) {
