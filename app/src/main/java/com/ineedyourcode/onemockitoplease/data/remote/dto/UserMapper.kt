@@ -7,7 +7,7 @@ class UserMapper {
         return UserProfile(
             id = userProfileDto.id.toString(),
             login = userProfileDto.login,
-            name = userProfileDto.name,
+            name = userProfileDto.name ?: "имя не указано",
             avatar = userProfileDto.avatarUrl
         )
     }

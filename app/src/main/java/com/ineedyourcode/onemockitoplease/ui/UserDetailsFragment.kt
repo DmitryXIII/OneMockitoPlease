@@ -13,7 +13,7 @@ import com.ineedyourcode.onemockitoplease.R
 import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
 import org.koin.android.ext.android.inject
 
-private const val DEFAULT_USERNAME = "jakewharton"
+private const val DEFAULT_USERNAME = ""
 
 class UserDetailsFragment : Fragment(R.layout.fragment_user_details), ViewContract {
 

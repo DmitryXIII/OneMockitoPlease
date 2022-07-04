@@ -18,8 +18,12 @@ class Repository(
                 call: Call<UserProfileDto>,
                 response: Response<UserProfileDto>,
             ) {
-                response.body()?.let {
-                    callback.onSuccess(mapper.mapUserProfileDto(it))
+                if (response.body() == null) {
+                    callback.onError(NullPointerException("Пользователь не существует"))
+                } else {
+                    response.body()?.let {
+                        callback.onSuccess(mapper.mapUserProfileDto(it))
+                    }
                 }
             }
 
