@@ -13,6 +13,8 @@ import com.ineedyourcode.onemockitoplease.R
 import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
 import org.koin.android.ext.android.inject
 
+private const val DEFAULT_USERNAME = "jakewharton"
+
 class UserDetailsFragment : Fragment(R.layout.fragment_user_details), ViewContract {
 
     private val presenter: PresenterContract by inject()
@@ -28,7 +30,7 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details), ViewContra
         userName = view.findViewById(R.id.user_name_text_view)
         userLogin = view.findViewById(R.id.user_login_text_view)
         userAvatar = view.findViewById(R.id.user_avatar_image_view)
-        presenter.getUserProfile("jakewharton")
+        presenter.getUserProfile(DEFAULT_USERNAME)
     }
 
     override fun showResult(userProfile: UserProfile) {
