@@ -3,8 +3,12 @@ package com.ineedyourcode.onemockitoplease.ui
 import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
 import com.ineedyourcode.onemockitoplease.domain.usecase.GetUserCallback
 import com.ineedyourcode.onemockitoplease.domain.usecase.GetUserUsecase
+import com.ineedyourcode.onemockitoplease.ui.utils.UserProfileChecker
 
-class UserDetailsPresenter(private val repository: GetUserUsecase) : PresenterContract {
+class UserDetailsPresenter(
+    private val repository: GetUserUsecase,
+    private val userProfileChecker: UserProfileChecker,
+) : PresenterContract {
     private var view: ViewContract? = null
 
     override fun onAttach(view: ViewContract) {
@@ -16,14 +20,18 @@ class UserDetailsPresenter(private val repository: GetUserUsecase) : PresenterCo
     }
 
     override fun getUserProfile(userName: String) {
-        if (userName.isBlank()) {
+        if (userProfileChecker.checkEmptyRequest(userName)) {
             view?.showError("Логин не может быть пустым")
         } else {
             view?.showProgress()
             repository.getUser(userName, object : GetUserCallback {
                 override fun onSuccess(userProfile: UserProfile) {
                     view?.hideProgress()
-                    view?.showResult(userProfile)
+                    if (userProfileChecker.checkIsItJakeWhartonProfile(userProfile)) {
+                        view?.showResult(userProfile)
+                    } else {
+                        view?.showError("Это не Jake Wharton")
+                    }
                 }
 
                 override fun onError(error: Throwable) {
