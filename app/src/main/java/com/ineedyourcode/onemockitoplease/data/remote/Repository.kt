@@ -2,6 +2,7 @@ package com.ineedyourcode.onemockitoplease.data.remote
 
 import com.ineedyourcode.onemockitoplease.data.remote.dto.UserMapper
 import com.ineedyourcode.onemockitoplease.data.remote.dto.UserProfileDto
+import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
 import com.ineedyourcode.onemockitoplease.domain.usecase.GetUserCallback
 import com.ineedyourcode.onemockitoplease.domain.usecase.GetUserUsecase
 import retrofit2.Call
