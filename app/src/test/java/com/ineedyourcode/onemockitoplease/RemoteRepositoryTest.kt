@@ -8,8 +8,8 @@ import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
 import com.ineedyourcode.onemockitoplease.domain.usecase.GetUserCallback
 import okhttp3.Request
 import okio.Timeout
-import org.junit.Before
 import org.junit.Assert.assertNull
+import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.*
 import retrofit2.Call

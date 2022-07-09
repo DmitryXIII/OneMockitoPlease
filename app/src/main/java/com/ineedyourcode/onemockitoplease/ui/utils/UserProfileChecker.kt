@@ -1,6 +1,5 @@
 package com.ineedyourcode.onemockitoplease.ui.utils
 
-
 private const val JAKE_WHARTON_PROFILE_ID = "66577"
 
 class UserProfileChecker {
