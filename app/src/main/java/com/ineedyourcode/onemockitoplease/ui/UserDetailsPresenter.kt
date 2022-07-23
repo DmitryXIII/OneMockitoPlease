@@ -8,7 +8,7 @@ import com.ineedyourcode.onemockitoplease.ui.utils.UserProfileChecker
 class UserDetailsPresenter(
     private val repository: GetUserUsecase,
     private val userProfileChecker: UserProfileChecker,
-) : PresenterContract {
+) : PresenterContract, GetUserCallback {
     private var view: ViewContract? = null
 
     override fun onAttach(view: ViewContract) {
@@ -24,21 +24,21 @@ class UserDetailsPresenter(
             view?.showError("Логин не может быть пустым")
         } else {
             view?.showProgress()
-            repository.getUser(userName, object : GetUserCallback {
-                override fun onSuccess(userProfile: UserProfile) {
-                    view?.hideProgress()
-                    if (userProfileChecker.checkIsItJakeWhartonProfile(userProfile)) {
-                        view?.showResult(userProfile)
-                    } else {
-                        view?.showError("Это не Jake Wharton")
-                    }
-                }
-
-                override fun onError(error: Throwable) {
-                    view?.hideProgress()
-                    view?.showError(error.message.toString())
-                }
-            })
+            repository.getUser(userName, this)
         }
+    }
+
+    override fun onSuccess(userProfile: UserProfile) {
+        view?.hideProgress()
+        if (userProfileChecker.checkIsItJakeWhartonProfile(userProfile.id)) {
+            view?.showResult(userProfile)
+        } else {
+            view?.showError("Это не Jake Wharton")
+        }
+    }
+
+    override fun onError(error: Throwable) {
+        view?.hideProgress()
+        view?.showError(error.message.toString())
     }
 }

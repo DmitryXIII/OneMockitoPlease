@@ -1,7 +1,5 @@
 package com.ineedyourcode.onemockitoplease.ui.utils
 
-import com.ineedyourcode.onemockitoplease.domain.entity.UserProfile
-
 private const val JAKE_WHARTON_PROFILE_ID = "66577"
 
 class UserProfileChecker {
@@ -9,7 +7,7 @@ class UserProfileChecker {
         return request.isEmpty()
     }
 
-    fun checkIsItJakeWhartonProfile(userProfile: UserProfile): Boolean {
-        return userProfile.id == JAKE_WHARTON_PROFILE_ID
+    fun checkIsItJakeWhartonProfile(userProfileId: String): Boolean {
+        return userProfileId == JAKE_WHARTON_PROFILE_ID
     }
 }
